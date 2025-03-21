@@ -1,0 +1,32 @@
+.card {
+    min-width: 220px;
+    border: 1px solid grey;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    -webkit-box-shadow: inset 0px 150px 40px -150px rgba(255, 0, 0, 0.6);
+    -moz-box-shadow: inset 0px 150px 40px -150px rgba(255, 0, 0, 0.6);
+    box-shadow: inset 0px 150px 40px -150px rgba(255, 0, 0, 0.6);
+}
+
+.removeFromStorageParagraph {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.removeFromStorageParagraph:last-of-type {
+    margin: 1em
+}
+
+h3:has(+ p.removeFromStorageParagraph) {margin-bottom: 0;}
+
+.removeFromStorage {
+    color: grey;
+    cursor: pointer;
+}
+
+.removeFromStorage:hover {text-decoration: underline; color: red;}
