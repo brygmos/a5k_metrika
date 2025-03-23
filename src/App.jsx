@@ -2,10 +2,10 @@ import './App.css'
 import ProjectCard from './ProjectCard/ProjectCard'
 
 const PROJECTS = [
-  'НЦ Россия',
-  'Премия Служение',
-  'Премия Событие',
-  'РФС',
+  { name: 'НЦ Россия', color: 'red' },
+  { name: 'Премия Служение', color: 'gold' },
+  { name: 'Премия Событие', color: 'white' },
+  { name: 'РФС', color: 'blue' },
 ]
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
     <>
       <h1>A5K Projects Metrics</h1>
       <div className='projects'>
-      {PROJECTS && PROJECTS.map(project=>(<ProjectCard projectName={project}/>))}
+      {PROJECTS && PROJECTS.map(project=>(<ProjectCard projectName={project.name} color={project.color}/>))}
       </div>
     </>
   )

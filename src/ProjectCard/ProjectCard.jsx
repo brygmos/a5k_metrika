@@ -14,11 +14,12 @@ const METRICS = [
   { name: "Доработки ТЗ ЛЛК", value: 0 },
   { name: "Доработки ТЗ Учетки", value: 0 },
   { name: "Доработки Письма", value: 0 },
-  { name: "Исправление ошибок", value: 0 }
+  { name: "Исправление ошибок", value: 0 },
+  { name: "Документы", value: 0 }
 ]
 
 function ProjectCard(props) {
-  const { projectName = 'projectName' } = props;
+  const { projectName = 'projectName', color='red' } = props;
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem('metrics_' + projectName);
     return savedCount ? JSON.parse(savedCount) : METRICS;
@@ -49,7 +50,7 @@ function ProjectCard(props) {
 
   return (
     <>
-      <div className={cls.card}>
+      <div className={cls.card} style={{color: color}}>
         <h3>{projectName}</h3>
         <p className={cls.removeFromStorageParagraph}><span className={cls.removeFromStorage} onClick={handleRemoveFromStorage}>reset</span></p>
         <p className={cls.removeFromStorageParagraph}><span className={cls.removeFromStorage} onClick={downloadJson}>JSON</span></p>
