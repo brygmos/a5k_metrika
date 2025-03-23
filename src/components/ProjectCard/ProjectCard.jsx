@@ -1,52 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import cls from "./ProjectCard.module.css";
 import InlineButton from "../InlineButton/InlineButton";
+import { METRICS } from "../../data/metrics"; // Import METRICS
 
-const METRICS = [
-  { name: "Поднятие реги", value: 0 },
-  { name: "Поднятие ГЛК", value: 0 },
-  { name: "Поднятие ЛЛК", value: 0 },
-  { name: "Учетки", value: 0 },
-  { name: "Письма", value: 0 },
-  { name: "Рассылки", value: 0 },
-  { name: "АПИ", value: 0 },
-  { name: "Доработки ТЗ реги", value: 0 },
-  { name: "Доработки ТЗ ГЛК", value: 0 },
-  { name: "Доработки ТЗ ЛЛК", value: 0 },
-  { name: "Доработки ТЗ Учетки", value: 0 },
-  { name: "Доработки Письма", value: 0 },
-  { name: "Исправление ошибок", value: 0 },
-  { name: "Документы", value: 0 },
-];
+const formatDate = (date) => {
+  return date.toISOString().split("T")[0];
+};
 
 function ProjectCard(props) {
-  const { projectName = "projectName", color = "red" } = props;
+  const { projectName, selectedDate, color = "red" } = props;
+
   const [count, setCount] = useState(() => {
-    const savedCount = localStorage.getItem("metrics_" + projectName);
+    const savedCount = localStorage.getItem(
+      "metrics_" + projectName + "_" + formatDate(selectedDate)
+    );
     return savedCount ? JSON.parse(savedCount) : METRICS;
   });
 
-  const handleButtonClick = (index) => {
-    const newCount = count.map((item, i) =>
-      i === index ? { ...item, value: item.value + 1 } : item
+  useEffect(() => {
+    const savedCount = localStorage.getItem(
+      "metrics_" + projectName + "_" + selectedDate.toISOString().split("T")[0]
     );
-    setCount(newCount);
-    localStorage.setItem("metrics_" + projectName, JSON.stringify(newCount));
-  };
+    setCount(savedCount ? JSON.parse(savedCount) : METRICS);
+  }, [selectedDate, projectName, count]);
+
+  const handleButtonClick = useCallback(
+    (index) => {
+      const newCount = count.map((item, i) =>
+        i === index ? { ...item, value: item.value + 1 } : item
+      );
+      setCount(newCount);
+      localStorage.setItem(
+        "metrics_" + projectName + "_" + formatDate(selectedDate),
+        JSON.stringify(newCount)
+      );
+    },
+    [count, projectName, selectedDate]
+  );
 
   const handleRemoveFromStorage = () => {
-    localStorage.removeItem("metrics_" + projectName);
+    localStorage.removeItem(
+      "metrics_" + projectName + "_" + selectedDate.toISOString().split("T")[0]
+    );
     const newCount = count.map((item) => ({ ...item, value: 0 }));
     setCount(newCount);
   };
 
   const downloadJson = () => {
-    const jsonString = JSON.stringify(
-      localStorage.getItem("metrics_" + projectName),
-      null,
-      2
-    );
-    const blob = new Blob([JSON.parse(jsonString)], {
+    const jsonString = localStorage.getItem("metrics_" + projectName);
+    const blob = new Blob([jsonString ? jsonString : JSON.stringify(METRICS)], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);
@@ -57,10 +59,19 @@ function ProjectCard(props) {
     URL.revokeObjectURL(url);
   };
 
+  const renderedMetrics = useMemo(() => {
+    return count.map((metric, index) => (
+      <button key={index} onClick={() => handleButtonClick(index)}>
+        {metric.name}: {metric.value}
+      </button>
+    ));
+  }, [count, handleButtonClick]);
+
   return (
     <>
       <div className={cls.card} style={{ color: color }}>
         <h3>{projectName}</h3>
+        <p>{selectedDate ? selectedDate.toISOString().split("T")[0] : ""}</p>
         <p className={cls.removeFromStorageParagraph}>
           <InlineButton
             handleClick={handleRemoveFromStorage}
@@ -75,12 +86,7 @@ function ProjectCard(props) {
             JSON
           </InlineButton>
         </p>
-        {count &&
-          count.map((metric, index) => (
-            <button key={index} onClick={() => handleButtonClick(index)}>
-              {metric.name}: {metric.value}
-            </button>
-          ))}
+        {renderedMetrics}
       </div>
     </>
   );

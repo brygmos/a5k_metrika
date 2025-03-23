@@ -1,0 +1,16 @@
+export const METRICS = [
+  { name: "Поднятие реги", value: 0 },
+  { name: "Поднятие ГЛК", value: 0 },
+  { name: "Поднятие ЛЛК", value: 0 },
+  { name: "Учетки", value: 0 },
+  { name: "Письма", value: 0 },
+  { name: "Рассылки", value: 0 },
+  { name: "АПИ", value: 0 },
+  { name: "Доработки ТЗ реги", value: 0 },
+  { name: "Доработки ТЗ ГЛК", value: 0 },
+  { name: "Доработки ТЗ ЛЛК", value: 0 },
+  { name: "Доработки ТЗ Учетки", value: 0 },
+  { name: "Доработки Письма", value: 0 },
+  { name: "Исправление ошибок", value: 0 },
+  { name: "Документы", value: 0 },
+];
