@@ -28,3 +28,15 @@ h1 {
   margin: 0 auto 1em;
   width: 200px;
 }
+
+.inputsInlineContainer {
+  display: inline-flex;
+  gap: 10px;
+  /* vertical-align: middle; */
+  align-items: center;
+}
+
+.inputsInlineContainer input {
+  max-width: 100px;
+  vertical-align: middle;
+}

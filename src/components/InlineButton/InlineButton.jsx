@@ -1,7 +1,7 @@
 import cls from "./InlineButton.module.css";
 
 function InlineButton(props) {
-  const { color = "gray", hoverColor = "blue", handleClick, children } = props;
+  const { color = "gray", hoverColor, handleClick, children } = props;
 
   return (
     <span

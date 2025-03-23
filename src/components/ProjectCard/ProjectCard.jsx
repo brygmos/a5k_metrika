@@ -5,7 +5,12 @@ import { METRICS } from "../../data/metrics";
 import { formatDate } from "../../helpers";
 
 function ProjectCard(props) {
-  const { projectName, selectedDate, color = "red" } = props;
+  const {
+    projectName,
+    selectedDate,
+    handleRemoveProject,
+    color = "red",
+  } = props;
 
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem(
@@ -84,6 +89,16 @@ function ProjectCard(props) {
             <p className={cls.removeFromStorageParagraph}>
               <InlineButton handleClick={downloadJson} hoverColor="lightblue">
                 JSON
+              </InlineButton>
+            </p>
+            <p className={cls.removeFromStorageParagraph}>
+              <InlineButton
+                handleClick={() => {
+                  handleRemoveProject(projectName);
+                }}
+                hoverColor="red"
+              >
+                remove
               </InlineButton>
             </p>
           </div>
