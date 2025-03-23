@@ -16,24 +16,29 @@
   color: white;
 }
 
-.removeFromStorageParagraph {
-  margin: 0;
-  padding: 0;
+.card_header {
+  padding: 1em;
+}
+
+.card_toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.card_toolbar p {
   font-size: 12px;
-  line-height: 1;
-}
-
-.removeFromStorageParagraph:last-of-type {
-  margin: 1em;
-}
-
-h3:has(+ p.removeFromStorageParagraph) {
-  margin-bottom: 0;
 }
 
 @media (prefers-color-scheme: light) {
   .card h3,
   .card p {
     color: #1a1a1a;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card {
+    width: 80vw;
   }
 }

@@ -70,21 +70,25 @@ function ProjectCard(props) {
   return (
     <>
       <div className={cls.card} style={{ color: color }}>
-        <h3>{projectName}</h3>
-        <p className={cls.removeFromStorageParagraph}>
-          <InlineButton
-            handleClick={handleRemoveFromStorage}
-            color="grey"
-            hoverColor="red"
-          >
-            reset
-          </InlineButton>
-        </p>
-        <p className={cls.removeFromStorageParagraph}>
-          <InlineButton handleClick={downloadJson} hoverColor="lightblue">
-            JSON
-          </InlineButton>
-        </p>
+        <div className={cls.card_header}>
+          <h3>{projectName}</h3>
+          <div className={cls.card_toolbar}>
+            <p className={cls.removeFromStorageParagraph}>
+              <InlineButton
+                handleClick={handleRemoveFromStorage}
+                color="grey"
+                hoverColor="red"
+              >
+                reset
+              </InlineButton>
+            </p>
+            <p className={cls.removeFromStorageParagraph}>
+              <InlineButton handleClick={downloadJson} hoverColor="lightblue">
+                JSON
+              </InlineButton>
+            </p>
+          </div>
+        </div>
         {renderedMetrics}
       </div>
     </>
