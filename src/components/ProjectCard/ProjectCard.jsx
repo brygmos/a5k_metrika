@@ -1,11 +1,8 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import cls from "./ProjectCard.module.css";
 import InlineButton from "../InlineButton/InlineButton";
-import { METRICS } from "../../data/metrics"; // Import METRICS
-
-const formatDate = (date) => {
-  return date.toISOString().split("T")[0];
-};
+import { METRICS } from "../../data/metrics";
+import { formatDate } from "../../helpers";
 
 function ProjectCard(props) {
   const { projectName, selectedDate, color = "red" } = props;
@@ -40,7 +37,7 @@ function ProjectCard(props) {
 
   const handleRemoveFromStorage = () => {
     localStorage.removeItem(
-      "metrics_" + projectName + "_" + selectedDate.toISOString().split("T")[0]
+      "metrics_" + projectName + "_" + formatDate(selectedDate)
     );
     const newCount = count.map((item) => ({ ...item, value: 0 }));
     setCount(newCount);
