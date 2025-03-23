@@ -19,10 +19,10 @@ function ProjectCard(props) {
 
   useEffect(() => {
     const savedCount = localStorage.getItem(
-      "metrics_" + projectName + "_" + selectedDate.toISOString().split("T")[0]
+      "metrics_" + projectName + "_" + formatDate(selectedDate)
     );
     setCount(savedCount ? JSON.parse(savedCount) : METRICS);
-  }, [selectedDate, projectName, count]);
+  }, [selectedDate, projectName]);
 
   const handleButtonClick = useCallback(
     (index) => {
@@ -47,7 +47,9 @@ function ProjectCard(props) {
   };
 
   const downloadJson = () => {
-    const jsonString = localStorage.getItem("metrics_" + projectName);
+    const name = "metrics_" + projectName + "_" + formatDate(selectedDate);
+    console.log(name);
+    const jsonString = localStorage.getItem(name);
     const blob = new Blob([jsonString ? jsonString : JSON.stringify(METRICS)], {
       type: "application/json",
     });

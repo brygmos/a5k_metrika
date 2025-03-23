@@ -2,10 +2,11 @@ import "./App.css";
 import ProjectCard from "./components/ProjectCard/ProjectCard";
 import InlineButton from "./components/InlineButton/InlineButton";
 import { useState } from "react";
-import { PROJECTS } from "./data/projects"; // Import PROJECTS
+import { PROJECTS } from "./data/projects";
 
 function App() {
   let [selectedDate, setSelectedDate] = useState(new Date());
+
   const handleResetAll = () => {
     Object.keys(localStorage).forEach((key) => {
       if (key.startsWith(`metrics_`)) {
