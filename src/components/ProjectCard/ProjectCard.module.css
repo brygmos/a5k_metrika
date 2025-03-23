@@ -1,29 +1,39 @@
 .card {
-    min-width: 220px;
-    border: 1px solid grey;
-    border-radius: 1em;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  min-width: 220px;
+  border: 1px solid grey;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
-    -webkit-box-shadow: inset 0px 150px 40px -150px currentColor;
-    -moz-box-shadow: inset 0px 150px 40px -150px currentColor;
-    box-shadow: inset 0px 150px 40px -150px currentColor;
+  -webkit-box-shadow: inset 0px 150px 40px -150px currentColor;
+  -moz-box-shadow: inset 0px 150px 40px -150px currentColor;
+  box-shadow: inset 0px 150px 40px -150px currentColor;
 }
 
-.card h3, .card p {
-    color: white;
+.card h3,
+.card p {
+  color: white;
 }
 
 .removeFromStorageParagraph {
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    line-height: 1;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1;
 }
 
 .removeFromStorageParagraph:last-of-type {
-    margin: 1em
+  margin: 1em;
 }
 
-h3:has(+ p.removeFromStorageParagraph) {margin-bottom: 0;}
+h3:has(+ p.removeFromStorageParagraph) {
+  margin-bottom: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .card h3,
+  .card p {
+    color: #1a1a1a;
+  }
+}

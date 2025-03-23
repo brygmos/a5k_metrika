@@ -23,21 +23,23 @@ function App() {
   return (
     <>
       <h1>A5K Projects Metrics</h1>
-      <input
-        type="date"
-        id="dateInput"
-        value={selectedDate ? selectedDate.toISOString().split("T")[0] : ""}
-        onChange={handleDateChange}
-      />
-      <p>
-        <InlineButton
-          handleClick={handleResetAll}
-          color="grey"
-          hoverColor="red"
-        >
-          reset all
-        </InlineButton>
-      </p>
+      <div className="toolbar">
+        <input
+          type="date"
+          id="dateInput"
+          value={selectedDate ? selectedDate.toISOString().split("T")[0] : ""}
+          onChange={handleDateChange}
+        />
+        <p>
+          <InlineButton
+            handleClick={handleResetAll}
+            color="grey"
+            hoverColor="red"
+          >
+            reset all
+          </InlineButton>
+        </p>
+      </div>
       <div className="projects">
         {PROJECTS &&
           PROJECTS.map((project) => (

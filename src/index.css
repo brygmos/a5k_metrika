@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -63,5 +68,15 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+    color: #1a1a1a;
+  }
+  button:hover {
+    background-color: #bad2e1;
+  }
+  p {
+    color: #1a1a1a;
+  }
+  h3 {
+    color: #1a1a1a;
   }
 }

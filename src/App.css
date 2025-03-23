@@ -5,15 +5,25 @@
   text-align: center;
 }
 
-h1 {margin: 0px 0 20px;}
+h1 {
+  margin: 0px 0 20px;
+}
 
 .projects {
-  display: flex; 
-  gap: 1em; 
+  display: flex;
+  gap: 1em;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .card {
   padding: 1em;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 1em;
+  width: 200px;
 }

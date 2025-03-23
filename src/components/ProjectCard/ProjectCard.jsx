@@ -71,7 +71,6 @@ function ProjectCard(props) {
     <>
       <div className={cls.card} style={{ color: color }}>
         <h3>{projectName}</h3>
-        <p>{selectedDate ? selectedDate.toISOString().split("T")[0] : ""}</p>
         <p className={cls.removeFromStorageParagraph}>
           <InlineButton
             handleClick={handleRemoveFromStorage}

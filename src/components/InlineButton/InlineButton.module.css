@@ -1,4 +1,9 @@
-
 .inlineButton {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .inlineButton {
+    color: #1a1a1a;
+  }
 }
