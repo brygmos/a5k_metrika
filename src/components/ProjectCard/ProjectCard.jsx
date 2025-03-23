@@ -41,11 +41,13 @@ function ProjectCard(props) {
   );
 
   const handleRemoveFromStorage = () => {
-    localStorage.removeItem(
-      "metrics_" + projectName + "_" + formatDate(selectedDate)
-    );
-    const newCount = count.map((item) => ({ ...item, value: 0 }));
-    setCount(newCount);
+    if (confirm("Confirm reset") == true) {
+      localStorage.removeItem(
+        "metrics_" + projectName + "_" + formatDate(selectedDate)
+      );
+      const newCount = count.map((item) => ({ ...item, value: 0 }));
+      setCount(newCount);
+    }
   };
 
   const downloadJson = () => {

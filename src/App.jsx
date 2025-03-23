@@ -33,20 +33,24 @@ function App() {
   };
 
   const handleRemoveProject = (projectName) => {
-    const updatedProjects = projects.filter(
-      (project) => projectName !== project.name
-    );
-    setProjects(updatedProjects);
-    localStorage.setItem("metrics_projects", JSON.stringify(updatedProjects));
+    if (confirm("Confirm removing") == true) {
+      const updatedProjects = projects.filter(
+        (project) => projectName !== project.name
+      );
+      setProjects(updatedProjects);
+      localStorage.setItem("metrics_projects", JSON.stringify(updatedProjects));
+    }
   };
 
   const handleResetAll = () => {
-    Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith(`metrics_`) && !key.startsWith(`metrics_projects`)) {
-        localStorage.removeItem(key);
-      }
-    });
-    window.location.reload();
+    if (confirm("Confirm reset") == true) {
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith(`metrics_`) && !key.startsWith(`metrics_projects`)) {
+          localStorage.removeItem(key);
+        }
+      });
+      window.location.reload();
+    }
   };
 
   const handleDateChange = (event) => {
