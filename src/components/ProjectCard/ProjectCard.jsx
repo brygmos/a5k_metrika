@@ -66,11 +66,25 @@ function ProjectCard(props) {
   };
 
   const renderedMetrics = useMemo(() => {
-    return count.map((metric, index) => (
-      <button key={index} onClick={() => handleButtonClick(index)}>
-        {metric.name}: {metric.value}
-      </button>
-    ));
+    return count.map((metric, index) => {
+      if (metric.value == 0) {
+        return (
+          <button key={index} onClick={() => handleButtonClick(index)}>
+            {metric.name}: {metric.value}
+          </button>
+        );
+      } else {
+        return (
+          <button
+            style={{ color: "lime" }}
+            key={index}
+            onClick={() => handleButtonClick(index)}
+          >
+            {metric.name}: {metric.value}
+          </button>
+        );
+      }
+    });
   }, [count, handleButtonClick]);
 
   return (
